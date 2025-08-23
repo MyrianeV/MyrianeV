@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="text-white p-4">
+    <footer className="text-gray-500 p-4">
       <div className="text-center">
         <p>© 2025 Myriane Vorano. All rights reserved.</p>
       </div>
