@@ -1,27 +1,29 @@
-import { useEffect, useState } from 'react' 
+import { useState } from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css'
 import './index.css'
+import Footer from './components/footer.jsx' 
+import Navbar from './components/navbar.jsx'
+import Portfolio from './pages/portfolio.jsx'
+import AboutMe from './pages/aboutme.jsx'
+import ScrollToTop from './components/ScrollToTop'
+
 
 export default function App() {
-  const [msg, setMsg] = useState('loading...')
-
-  useEffect(() => {
-    fetch('/api')                // note: relative path so Vite proxy kicks in
-      .then(r => r.text())
-      .then(text => {
-        console.log(text)        // should log: "Hello from Node backend!"
-        setMsg(text)
-      })
-      .catch(err => {
-        console.error(err)
-        setMsg('error (check console)')
-      })
-  }, [])
-
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <h1 className="text-3xl font-bold underline">{msg}</h1>
-    </div>
-  )
+    <Router>
+      <ScrollToTop />
+      <div>
+        <Navbar/>
+        <div className="min-h-screen">
+          <Routes>
+            <Route path="/" element={<Portfolio/>}/>
+            <Route path="/aboutme" element={<AboutMe/>}/>
+          </Routes>
+        </div>
+        <Footer/>
+      </div>
+    </Router>
+  );
 }
 
